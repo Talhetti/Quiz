@@ -64,6 +64,45 @@ If you want to see examples of what design elements we have, you can [visit the 
 
 ---
 
-## Licence
+## Como instalar e utilizar
 
-Starter kit is open-sourced software licensed under the MIT license.
+## Instalação
+
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   cd seu-repositorio
+   ```
+
+2. **Instale as dependências PHP**
+   ```bash
+   composer install
+   ```
+
+3. **Instale as dependências JavaScript (se aplicável)**
+   ```bash
+   npm install
+   ```
+
+4. **Copie o arquivo de ambiente**
+   ```bash
+   cp .env.example .env
+   ```
+   No Windows PowerShell:
+   ```powershell
+   Copy-Item .env.example .env
+   ```
+
+5. **Configure as variáveis do `.env` conforme necessário**
+
+6. **Gere a chave da aplicação**
+   ```bash
+   php artisan key:generate
+   ```
+
+7. **Execute as migrações do banco de dados**
+   ```bash
+   php artisan migrate
+   ```
+
+8. **Inicie o
