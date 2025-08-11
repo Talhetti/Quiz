@@ -5,7 +5,7 @@
         <div class="p-6">
             <div class="mb-3">
                 <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100 text-center">{{ __('Bem-vindo ao CodeQuiz') }}</h1>
-                <p class="text-sm text-center mt-2">{{ __('Aprenda programação com quizzes interativos')}} </p>
+                <p class="text-sm text-center mt-2">{{ __('Aprenda programação com quizzes interativos!')}} </p>
             </div>
 
             <form method="POST" action="{{ route('login') }}" class="space-y-3">
