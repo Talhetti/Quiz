@@ -7,9 +7,11 @@
                         <ul class="space-y-1 px-2">
                             <!-- Dashboard -->
                             <x-layouts.sidebar-link href="{{ route('dashboard') }}" icon='fas-house'
-                                :active="request()->routeIs('dashboard*')">Dashboard</x-layouts.sidebar-link>
+                                :active="request()->routeIs('dashboard*')">Inicio</x-layouts.sidebar-link>
+                            <x-layouts.sidebar-link href="{{ route('histories.index') }}" icon='fas-clock'
+                                :active="request()->routeIs('histories*')">Histórico</x-layouts.sidebar-link>
 
-                            <!-- Example two level -->
+                            {{-- <!-- Example two level -->
                             <x-layouts.sidebar-two-level-link-parent title="Example two level" icon="fas-house"
                                 :active="request()->routeIs('two-level*')">
                                 <x-layouts.sidebar-two-level-link href="#" icon='fas-house'
@@ -28,7 +30,7 @@
                                         Third Level Link
                                     </x-layouts.sidebar-three-level-link>
                                 </x-layouts.sidebar-three-level-parent>
-                            </x-layouts.sidebar-two-level-link-parent>
+                            </x-layouts.sidebar-two-level-link-parent> --}}
                         </ul>
                     </nav>
                 </div>
