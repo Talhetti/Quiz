@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Course;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,18 +17,43 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
-        \App\Models\History::create([
-            'user_id'      => $user->$id,        // ID do usuário logado
-            'language'     => 'PHP',                  // Nome da linguagem
-            'theme'        => 'Arrays',               // Tema do quiz
-            'score'        => 80,                     // Pontuação obtida
-            'completed_at' => now(),                  // Data/hora de conclusão
+        Course::create([
+            'name_course' => 'PHP',
+            'description' => 'Curso de PHP',
+            'quiz_count' => 5,
+            'user_id' => $user->id,
+            'image_url' => '/images/php.png',
         ]);
 
+        Course::create([
+            'name_course' => 'JavaScript',
+            'description' => 'Curso de JavaScript',
+            'quiz_count' => 5,
+            'user_id' => $user->id,
+            'image_url' => '/images/js.png',
+        ]);
+
+        Course::create([
+            'name_course' => 'NodeJS',
+            'description' => 'Curso de JavaScript FrameWork',
+            'quiz_count' => 7,
+            'user_id' => $user->id,
+            'image_url' => '/images/node.png',
+        ]);
+
+        
+        Course::create([
+            'name_course' => 'React',
+            'description' => 'Curso de JavaScript FrameWork',
+            'quiz_count' => 3,
+            'user_id' => $user->id,
+            'image_url' => '/images/react.png',
+        ]);
+        
     }
 }

@@ -1,15 +1,13 @@
 <?php
 
-use App\Http\Controllers\Settings;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Settings;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('auth.login');
 })->name('home');
-
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', [Settings\ProfileController::class, 'edit'])->name('settings.profile.edit');
@@ -18,7 +16,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', [Settings\PasswordController::class, 'edit'])->name('settings.password.edit');
     Route::put('settings/password', [Settings\PasswordController::class, 'update'])->name('settings.password.update');
     Route::get('settings/appearance', [Settings\AppearanceController::class, 'edit'])->name('settings.appearance.edit');
-    Route::get('histories', [App\Http\Controllers\HistoryController::class, 'index'])->name('histories.index');
+    Route::get('histories', [HistoryController::class, 'index'])->name('histories.index');
+    Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';
