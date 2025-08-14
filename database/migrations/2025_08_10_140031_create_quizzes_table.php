@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("correct_answer");
             $table->string('topic')->nullable();
             $table->integer('score')->default(0);
-            $table->foreignId('courses_id')->constrained('courses')->onDelete('cascade');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }
