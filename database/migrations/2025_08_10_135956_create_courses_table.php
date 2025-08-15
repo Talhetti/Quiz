@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('image_url')->nullable();
             $table->string('name_course');
             $table->text('description');
             $table->integer('quiz_count');
