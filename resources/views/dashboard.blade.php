@@ -18,6 +18,9 @@
                 <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2 text-center">
                     {{ $course->name_course }}
                 </h2>
+                <p class="text-2sm text-gray-300 dark:text-gray-400 mb-3">
+                    {{ $course->description }}
+                </p>
                 <p class="text-sm text-gray-600 dark:text-gray-400">
                     Quizzes disponíveis: 
                     <span class="font-semibold text-purple-600 dark:text-purple-400">

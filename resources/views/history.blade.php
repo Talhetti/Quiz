@@ -1,6 +1,6 @@
 <x-layouts.app>
     <div class="max-w-2xl mx-auto mt-10 bg-white dark:bg-gray-800 p-8 rounded shadow">
-        <h2 class="text-2xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">Histórico do Usuário</h2>
+        <h2 class="text-2xl font-bold pt-4  mb-6 text-center text-blue-600 dark:text-blue-400">Histórico do Usuário</h2>
         
         <table class="w-full text-left border-collapse">
             <thead>

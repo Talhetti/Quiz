@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $coursesData = [
             [
                 'name_course' => 'PHP',
-                'description' => 'Curso de PHP',
+                'description' => 'Uma linguagem para backend web',
                 'quiz_count' => 2,
                 'image_url' => 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg',
                 'quizzes' => [
@@ -46,8 +46,15 @@ class DatabaseSeeder extends Seeder
                 ],
             ],
             [
+                'name_course' => 'NodeJs',
+                'description' => 'Curso para iniciantes em backend',
+                'quiz_count' => 3,
+                'image_url' => 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
+                'quizzes' => [],
+            ],
+            [
                 'name_course' => 'JavaScript',
-                'description' => 'Curso de JavaScript',
+                'description' => 'Linguagem dinâmica para web',
                 'quiz_count' => 2,
                 'image_url' => 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
                 'quizzes' => [
