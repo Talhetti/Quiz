@@ -14,25 +14,77 @@ class QuizController extends Controller
         return view('quiz', compact('course', 'quizzes'));
     }
 
-    public function show($quizId)
+    // Inicia o quiz, sorteando 10 perguntas e salvando na sessão
+    public function start($courseId)
     {
-        $quiz = \App\Models\Quiz::findOrFail($quizId);
-        return view('quiz_show', compact('quiz'));
+        $questions = \App\Models\Quiz::where('course_id', $courseId)->inRandomOrder()->limit(10)->pluck('id')->toArray();
+        session([
+            'quiz.questions' => $questions,
+            'quiz.current' => 0,
+            'quiz.correct' => 0,
+            'quiz.answers' => [],
+        ]);
+        return redirect()->route('quizzes.question', $courseId);
     }
 
-    public function question($quizId)
+    // Exibe a pergunta atual
+    public function question($courseId)
     {
-    $quiz = \App\Models\Quiz::findOrFail($quizId);
-    return view('question', compact('quiz'));
+        $questions = session('quiz.questions');
+        $current = session('quiz.current', 0);
+
+        if (!$questions || $current >= count($questions)) {
+            return redirect()->route('quizzes.result', $courseId);
+        }
+
+        $quiz = \App\Models\Quiz::findOrFail($questions[$current]);
+        $feedback = session('quiz.feedback', null);
+        session()->forget('quiz.feedback');
+
+        return view('question', compact('quiz', 'current', 'feedback'));
     }
 
-    public function answer(Request $request, $quizId)
+    // Processa a resposta e mostra feedback imediato
+    public function answer(Request $request, $courseId)
     {
-    $quiz = \App\Models\Quiz::findOrFail($quizId);
-    $selected = $request->input('answer');
-    $isCorrect = $selected === $quiz->correct_option;
+        $questions = session('quiz.questions');
+        $current = session('quiz.current', 0);
 
-    return "Você selecionou: $selected. " . ($isCorrect ? "Correto!" : "Errado!");
+        if (!$questions || $current >= count($questions)) {
+            return redirect()->route('quizzes.result', $courseId);
+        }
+
+        $quiz = \App\Models\Quiz::findOrFail($questions[$current]);
+        $selected = $request->input('answer');
+        $isCorrect = $selected === $quiz->correct_option;
+
+        // Salva feedback para a próxima view
+        session(['quiz.feedback' => [
+            'selected' => $selected,
+            'isCorrect' => $isCorrect,
+            'correct_option' => $quiz->correct_option,
+        ]]);
+
+        // Atualiza acertos e respostas
+        $answers = session('quiz.answers', []);
+        $answers[$quiz->id] = $selected;
+        session(['quiz.answers' => $answers]);
+        if ($isCorrect) {
+            session(['quiz.correct' => session('quiz.correct') + 1]);
+        }
+
+        // Avança para próxima pergunta
+        session(['quiz.current' => $current + 1]);
+
+        return redirect()->route('quizzes.question', $courseId);
     }
 
+    // Mostra o resultado final
+    public function result($courseId)
+    {
+        $correct = session('quiz.correct', 0);
+        $total = count(session('quiz.questions', []));
+        session()->forget(['quiz.questions', 'quiz.current', 'quiz.correct', 'quiz.answers']);
+        return view('quiz_result', compact('correct', 'total'));
+    }
 }
