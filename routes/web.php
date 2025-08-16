@@ -21,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('histories', [HistoryController::class, 'index'])->name('histories.index');
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
     Route::get('courses/{course}', [QuizController::class, 'index'])->name('courses.quizzes');
+    Route::get('quizzes/{quiz}/question', [QuizController::class, 'question'])->name('quizzes.question');
 });
 
 require __DIR__.'/auth.php';
