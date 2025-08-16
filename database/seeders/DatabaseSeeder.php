@@ -30,17 +30,23 @@ class DatabaseSeeder extends Seeder
                 'image_url' => 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg',
                 'quizzes' => [
                     [
-                        'question' => 'O que é uma variável em PHP?',
-                        'option' => 'Uma área de armazenamento',
-                        'correct_answer' => 'Uma área de armazenamento',
                         'topic' => 'Variáveis',
+                        'question' => 'Qual destas é a forma correta de declarar uma variável em PHP?',
+                        'option_a' => '$variavel = 10;',
+                        'option_b' => 'var variavel = 10;',
+                        'option_c' => 'let variavel = 10;',
+                        'option_d' => 'variavel := 10;',
+                        'correct_option' => 'a',
                         'score' => 10,
                     ],
                     [
-                        'question' => 'Como declarar uma função em PHP?',
-                        'option' => 'function minhaFuncao() {}',
-                        'correct_answer' => 'function minhaFuncao() {}',
                         'topic' => 'Funções',
+                        'question' => 'Como declarar uma função em PHP?',
+                        'option_a' => 'function minhaFuncao() {}',
+                        'option_b' => 'def minhaFuncao() {}',
+                        'option_c' => 'fun minhaFuncao() {}',
+                        'option_d' => 'function: minhaFuncao() {}',
+                        'correct_option' => 'a',
                         'score' => 10,
                     ],
                 ],
@@ -59,17 +65,23 @@ class DatabaseSeeder extends Seeder
                 'image_url' => 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
                 'quizzes' => [
                     [
-                        'question' => 'Como declarar uma função em JavaScript?',
-                        'option' => 'function minhaFuncao() {}',
-                        'correct_answer' => 'function minhaFuncao() {}',
                         'topic' => 'Funções',
+                        'question' => 'Como declarar uma função em JavaScript?',
+                        'option_a' => 'function minhaFuncao() {}',
+                        'option_b' => 'def minhaFuncao() {}',
+                        'option_c' => 'fun minhaFuncao() {}',
+                        'option_d' => 'function: minhaFuncao() {}',
+                        'correct_option' => 'a',
                         'score' => 10,
                     ],
                     [
-                        'question' => 'O que é uma variável em JavaScript?',
-                        'option' => 'let x = 10;',
-                        'correct_answer' => 'let x = 10;',
                         'topic' => 'Variáveis',
+                        'question' => 'O que é uma variável em JavaScript?',
+                        'option_a' => 'let x = 10;',
+                        'option_b' => 'var x = 10;',
+                        'option_c' => 'const x = 10;',
+                        'option_d' => 'x := 10;',
+                        'correct_option' => 'a',
                         'score' => 10,
                     ],
                 ],
@@ -94,7 +106,7 @@ class DatabaseSeeder extends Seeder
                 History::create([
                     'user_id' => $user->id,
                     'quiz_id' => $quiz->id,
-                    'score_obtained' => rand(70, 100), // Pontuação aleatória para exemplo
+                    'score_obtained' => rand(70, 100), // Simula uma pontuação aleatória
                     'completed_at' => now(),
                 ]);
             }
