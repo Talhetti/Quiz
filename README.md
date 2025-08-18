@@ -18,16 +18,6 @@ Essa aplicação serve tanto como ferramenta de estudo quanto como exemplo prát
 
 ---
 
-## 🖼️ Capturas de Tela
-
-> *Adicione aqui suas capturas de tela reais ou use exemplos genéricos abaixo se quiser ilustrar visualmente:*
-
-![Login](https://laraveldaily.com/uploads/2025/05/LoginPage.png)
-![Dashboard](https://laraveldaily.com/uploads/2025/05/DashboardPage.png)
-![Perfil](https://laraveldaily.com/uploads/2025/05/ProfilePage.png)
-
----
-
 ## ✅ O que está incluso?
 
 A aplicação vem com funcionalidades prontas para uso:
