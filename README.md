@@ -1,108 +1,140 @@
-# Laravel + Blade Starter Kit
+Laravel Quiz Starter Kit
+🎯 Introdução
 
----
+Este é um projeto de quiz para praticar conhecimentos em linguagens de programação, desenvolvido com Laravel 12 + Blade + AlpineJS.
 
-## Introduction
+O objetivo principal é oferecer uma plataforma simples, intuitiva e sem dependência de frameworks frontend complexos (como Vue ou React), onde os usuários podem:
 
-Our Laravel 12 + Blade starter kit provides the typical functionality found in the Laravel Starter kits, but with a few key differences:
+Escolher uma linguagem de programação
 
-- A CoreUI/AdminLTE inspired design layout
-- Blade + AlpineJS code
+Responder a quizzes interativos
 
-This kit aims to fill the gap where there is no simple **Blade only** starter kit available.
+Acompanhar seu histórico de respostas
 
-Our internal goal at Laravel Daily is to start using this starter kit for our Demo applications, to avoid overwhelming our audience with Vue/Livewire/React if we had used one of the official Laravel 12 starter kits.
+Personalizar a aparência da aplicação
 
-**Note:** This is Work in Progress kit, so it will get updates and fixes/features as we go.
+Gerenciar suas informações de perfil e senha
 
----
+Essa aplicação serve tanto como ferramenta de estudo quanto como exemplo prático de como usar Laravel + Blade para construir aplicações funcionais e modernas.
 
-## Screenshots
+🖼️ Capturas de Tela
 
-![](https://laraveldaily.com/uploads/2025/05/LoginPage.png)
+Adicione aqui suas capturas de tela reais ou use exemplos genéricos abaixo se quiser ilustrar visualmente:
 
-![](https://laraveldaily.com/uploads/2025/05/RegisterPage.png)
 
-![](https://laraveldaily.com/uploads/2025/05/DashboardPage.png)
 
-![](https://laraveldaily.com/uploads/2025/05/ProfilePage.png)
 
----
 
-## What is Inside?
 
-Inside you will find all the functions that you would expect:
+✅ O que está incluso?
 
-- Authentication
-    - Login
-    - Registration
-    - Password Reset Flow
-    - Email Confirmation Flow
-- Dashboard Page
-- Profile Settings
-    - Profile Information Page
-    - Password Update Page
-    - Appearance Preferences
+A aplicação vem com funcionalidades prontas para uso:
 
----
+Autenticação Completa
 
-## How to use it?
+Login
 
-To use this kit, you can install it using:
+Registro
 
-```bash
-laravel new --using=laraveldaily/starter-kit
-```
+Redefinição de Senha
 
-From there, you can modify the kit to your needs.
+Confirmação de E-mail
 
----
+Funcionalidades do Quiz
 
-## Design Elements
+Seleção de Linguagem (Ex: PHP, JavaScript, Python)
 
-If you want to see examples of what design elements we have, you can [visit the Wiki](<https://github.com/LaravelDaily/starter-kit/wiki/Design-Examples-(Raw-Files)>) and see the raw HTML files.
+Perguntas por linguagem
 
----
+Feedback de acertos/erros
 
-## Como instalar e utilizar
+Histórico de quizzes respondidos
 
-## Instalação
+Perfil do Usuário
 
-1. **Clone o repositório**
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
-   ```
+Atualização de informações pessoais
 
-2. **Instale as dependências PHP**
-   ```bash
-   composer install
-   ```
+Alteração de senha
 
-3. **Instale as dependências JavaScript (se aplicável)**
-   ```bash
-   npm install
-   ```
+Alteração de preferências de aparência (tema escuro/claro, etc.)
 
-4. **Copie o arquivo de ambiente**
-   ```bash
-   cp .env.example .env
-   ```
-   No Windows PowerShell:
-   ```powershell
-   Copy-Item .env.example .env
-   ```
+Painel/Dashboard
 
-5. **Configure as variáveis do `.env` conforme necessário**
+Visualização rápida de progresso
 
-6. **Gere a chave da aplicação**
-   ```bash
-   php artisan key:generate
-   ```
+Acesso rápido às últimas atividades
 
-7. **Execute as migrações do banco de dados**
-   ```bash
-   php artisan migrate
-   ```
+🚀 Como utilizar?
 
-8. **Inicie o
+Você pode iniciar o projeto usando:
+
+laravel new --using=seu-usuario/quiz-starter-kit
+
+
+Ou siga os passos abaixo para clonar e rodar localmente.
+
+⚙️ Instalação
+
+Clone o repositório
+
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+
+
+Instale as dependências PHP
+
+composer install
+
+
+Instale as dependências JavaScript
+
+npm install
+
+
+Copie o arquivo de ambiente
+
+cp .env.example .env
+
+
+No Windows PowerShell:
+
+Copy-Item .env.example .env
+
+
+Configure as variáveis do .env conforme necessário
+
+Inclua informações como DB_DATABASE, DB_USERNAME, etc.
+
+Gere a chave da aplicação
+
+php artisan key:generate
+
+
+Execute as migrações do banco de dados
+
+php artisan migrate
+
+
+Inicie o servidor de desenvolvimento
+
+php artisan serve
+
+
+(Opcional) Compile os assets:
+
+npm run dev
+
+🎨 Elementos de Design
+
+Todos os componentes visuais foram criados usando Blade + AlpineJS, com inspiração no estilo AdminLTE/CoreUI.
+Para ver exemplos de HTML cru dos componentes, visite o Wiki de Design.
+
+📌 Funcionalidades Futuras
+
+Ranking de usuários
+
+Criação de quizzes customizados
+
+Modo competitivo entre amigos
+
+Mais temas de personalização
