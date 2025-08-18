@@ -44,10 +44,3 @@ A aplicação vem com funcionalidades prontas para uso:
   - Acesso rápido às últimas atividades
 
 ---
-
-## 🚀 Como utilizar?
-
-Você pode iniciar o projeto usando:
-
-```bash
-laravel new --using=seu-usuario/quiz-starter-kit
