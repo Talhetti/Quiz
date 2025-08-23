@@ -14,8 +14,8 @@
             <tbody>
                 @forelse($histories as $history)
                     <tr>
-                        <td class="py-2 px-4 border">{{ $history->language }}</td>
-                        <td class="py-2 px-4 border">{{ $history->theme }}</td>
+                        <td class="py-2 px-4 border">{{ $history->quiz->course->name_course }}</td>
+                        <td class="py-2 px-4 border">{{ $history->quiz->topic }}</td>
                         <td class="py-2 px-4 border">{{ $history->score_obtained }}</td>
                         <td class="py-2 px-4 border">{{ $history->completed_at }}</td>
                     </tr>

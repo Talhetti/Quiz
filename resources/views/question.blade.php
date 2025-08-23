@@ -1,37 +1,44 @@
 <x-layouts.app>
-    <div class="max-w-xl mx-auto mt-10 bg-white dark:bg-gray-800 p-8 rounded shadow">
-        <h2 class="text-2xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">
-            {{ $quiz->topic ?? 'Pergunta do Quiz' }}
-        </h2>
-        <form method="POST" action="{{ route('quizzes.answer', $quiz->id) }}">
+    <div class="max-w-xl mx-auto mt-16 p-10 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl text-center relative">
+        <!-- Título do quiz -->
+        <h2  style="background-color: #1E2939;" class="text-3xl font-extrabold mb-8 p-3 text-blue-600 dark:text-blue-400">{{ $quiz->topic }}</h2>
+
+        <form style="background-color: #1E2939;" class="p-4" method="POST" action="{{ route('quizzes.answer', $quiz->topic) }}">
             @csrf
-            <div class="mb-4 ml-4">
-                <p class="text-lg font-semibold mb-4">
-                    {{ $quiz->question ?? 'Pergunta não cadastrada.' }}
-                </p>
-                <div class="space-y-2">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="answer" value="a" required>
-                        <span>{{ $quiz->option_a ?? 'Alternativa A não cadastrada' }}</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="answer" value="b">
-                        <span>{{ $quiz->option_b ?? 'Alternativa B não cadastrada' }}</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="answer" value="c">
-                        <span>{{ $quiz->option_c ?? 'Alternativa C não cadastrada' }}</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="answer" value="d">
-                        <span>{{ $quiz->option_d ?? 'Alternativa D não cadastrada' }}</span>
-                    </label>
-                </div>
+            <!-- Pergunta -->
+            <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">{{ $question->question }}</p>
+
+            <!-- Opções estilizadas -->
+            <div class="space-y-4 mb-6 text-left">
+                <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-gray-800 transition">
+                    <input type="radio" name="answer" value="a" required class="form-radio text-blue-600">
+                    <span class="ml-3">{{ $question->option_a }}</span>
+                </label>
+                <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-gray-800 transition">
+                    <input type="radio" name="answer" value="b" class="form-radio text-blue-600">
+                    <span class="ml-3">{{ $question->option_b }}</span>
+                </label>
+                <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-gray-800 transition">
+                    <input type="radio" name="answer" value="c" class="form-radio text-blue-600">
+                    <span class="ml-3">{{ $question->option_c }}</span>
+                </label>
+                <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-blue-50 dark:hover:bg-gray-800 transition">
+                    <input type="radio" name="answer" value="d" class="form-radio text-blue-600">
+                    <span class="ml-3">{{ $question->option_d }}</span>
+                </label>
             </div>
+
+            <!-- Botão enviar -->
             <button type="submit"
-                class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg shadow-md font-bold text-lg transition duration-200 hover:from-pink-500 hover:to-purple-500 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 mt-4">
-                Enviar Resposta
+                class="px-4 py-2 rounded-2 font-semibold text-white"
+                style="background-color: #17202A; border: 2px solid #0F1A26; transition: background-color 0.3s ease, transform 0.2s;">
+                Enviar
             </button>
         </form>
+
+        <!-- Indicador de progresso -->
+        <div class="mt-6 text-gray-500 dark:text-gray-400">
+            Pergunta {{ $current + 1 }} de {{ $quiz->questions()->count() }}
+        </div>
     </div>
 </x-layouts.app>

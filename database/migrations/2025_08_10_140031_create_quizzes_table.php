@@ -13,18 +13,12 @@ return new class extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
-        $table->unsignedBigInteger('course_id');
-        $table->string('topic');
-        $table->text('question');
-        $table->string('option_a');
-        $table->string('option_b');
-        $table->string('option_c');
-        $table->string('option_d');
-        $table->char('correct_option', 1); 
-        $table->integer('score')->default(10);
-        $table->timestamps();
+            $table->unsignedBigInteger('course_id');
+            $table->string('topic');
+            $table->integer('score')->default(10);
+            $table->timestamps();
 
-        $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }
 

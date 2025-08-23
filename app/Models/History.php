@@ -22,4 +22,9 @@ class History extends Model
     {
         return $this->belongsTo(\App\Models\Quiz::class);
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

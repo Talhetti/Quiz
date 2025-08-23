@@ -20,8 +20,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('histories', [HistoryController::class, 'index'])->name('histories.index');
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
     Route::get('courses/{course}', [QuizController::class, 'index'])->name('courses.quizzes');
-    Route::get('quizzes/{quiz}/question', [QuizController::class, 'question'])->name('quizzes.question');
-    Route::post('quizzes/{quiz}/answer', [QuizController::class, 'answer'])->name('quizzes.answer');
+    Route::get('quizzes/{topic}/question', [QuizController::class, 'question'])->name('quizzes.question');
+    Route::post('quizzes/{topic}/answer', [QuizController::class, 'answer'])->name('quizzes.answer');
 });
 
 require __DIR__.'/auth.php';
