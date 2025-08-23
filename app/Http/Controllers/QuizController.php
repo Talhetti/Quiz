@@ -19,4 +19,20 @@ class QuizController extends Controller
         $quiz = \App\Models\Quiz::findOrFail($quizId);
         return view('quiz_show', compact('quiz'));
     }
+
+    public function question($quizId)
+    {
+    $quiz = \App\Models\Quiz::findOrFail($quizId);
+    return view('question', compact('quiz'));
+    }
+
+    public function answer(Request $request, $quizId)
+    {
+    $quiz = \App\Models\Quiz::findOrFail($quizId);
+    $selected = $request->input('answer');
+    $isCorrect = $selected === $quiz->correct_option;
+
+    return "Você selecionou: $selected. " . ($isCorrect ? "Correto!" : "Errado!");
+    }
+
 }
