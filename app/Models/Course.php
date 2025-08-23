@@ -13,4 +13,9 @@ class Course extends Model
         'user_id',
         'image_url',
     ];
+
+    public function quizzes()
+    {
+        return $this->hasMany(\App\Models\Quiz::class);
+    }
 }

@@ -12,4 +12,14 @@ class History extends Model
         'score_obtained',
         'completed_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
+
+    public function quiz()
+    {
+        return $this->belongsTo(\App\Models\Quiz::class);
+    }
 }
