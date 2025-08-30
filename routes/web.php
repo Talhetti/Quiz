@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('courses/{course}', [QuizController::class, 'index'])->name('courses.quizzes');
     Route::get('quizzes/{topic}/question', [QuizController::class, 'question'])->name('quizzes.question');
     Route::post('quizzes/{topic}/answer', [QuizController::class, 'answer'])->name('quizzes.answer');
+    Route::get('quizzes/{topic}/feedback', [QuizController::class, 'feedback'])->name('quizzes.feedback');
 });
 
 require __DIR__.'/auth.php';

@@ -11,6 +11,11 @@
             Pontuação total: <span class="font-bold text-purple-600">{{ $score * $quiz->score }}</span>
         </p>
 
+        <a href="{{ route('quizzes.feedback', $quiz->topic) }}"
+           class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full shadow-md transition transform hover:scale-105 inline-block mb-4">
+           Ver detalhes das respostas
+        </a>
+
         <a href="{{ route('dashboard') }}" 
            class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-full shadow-md transition transform hover:scale-105 inline-block">
            Voltar ao início
