@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
-    /**
-     * Exibe os tópicos (quizzes) de um curso.
-     */
     public function index($courseId)
     {
         $course = Course::findOrFail($courseId);
@@ -22,10 +19,6 @@ class QuizController extends Controller
         return view('quiz', compact('course', 'quizzes'));
     }
 
-    /**
-     * Exibe uma pergunta por vez do quiz/tópico.
-     * Inicializa a sessão ao acessar o quiz.
-     */
     public function question($topic, Request $request)
     {
         $quiz = Quiz::where('topic', $topic)->firstOrFail();
@@ -38,17 +31,20 @@ class QuizController extends Controller
         if (!$request->session()->has('score')) {
             $request->session()->put('score', 0);
         }
+        // Salva os IDs das perguntas na sessão para feedback detalhado
+        if (!$request->session()->has('quiz.questions')) {
+            $request->session()->put('quiz.questions', $questions->pluck('id')->toArray());
+        }
 
         $current = $request->session()->get('current_question', 0);
         $score = $request->session()->get('score', 0);
 
         if ($current >= $questions->count()) {
-            $request->session()->forget(['current_question', 'score']);
-
+            // NÃO limpe as sessões aqui! (deixe para o feedback)
             // Salva histórico do usuário por quiz, linguagem e tópico
             $userId = Auth::id();
             $quizId = $quiz->id;
-            $scoreObtained = $score * $quiz->score;
+            $scoreObtained = $score * ($quiz->score ?? 1);
 
             History::where('user_id', $userId)
                 ->where('quiz_id', $quizId)
@@ -58,8 +54,8 @@ class QuizController extends Controller
             History::create([
                 'user_id' => $userId,
                 'quiz_id' => $quizId,
-                'course_id' => $quiz->course_id, // linguagem
-                'topic' => $quiz->topic,         // tópico
+                'course_id' => $quiz->course_id,
+                'topic' => $quiz->topic,
                 'score_obtained' => $scoreObtained,
                 'completed_at' => now(),
             ]);
@@ -76,9 +72,6 @@ class QuizController extends Controller
         return view('question', compact('quiz', 'question', 'current', 'score'));
     }
 
-    /**
-     * Processa a resposta do usuário e avança para a próxima pergunta.
-     */
     public function answer($topic, Request $request)
     {
         $quiz = Quiz::where('topic', $topic)->firstOrFail();
@@ -87,6 +80,12 @@ class QuizController extends Controller
         $score = $request->session()->get('score', 0);
 
         $question = $questions[$current];
+
+        // Salva a resposta do usuário na sessão para feedback detalhado
+        $answers = $request->session()->get('quiz.answers', []);
+        $answers[$question->id] = $request->input('answer');
+        $request->session()->put('quiz.answers', $answers);
+
         if ($request->input('answer') === $question->correct_option) {
             $score++;
         }
@@ -95,5 +94,33 @@ class QuizController extends Controller
         $request->session()->put('score', $score);
 
         return redirect()->route('quizzes.question', $quiz->topic);
+    }
+
+    public function feedback($topic, Request $request)
+    {
+        $quiz = Quiz::where('topic', $topic)->firstOrFail();
+        $questions = $request->session()->get('quiz.questions', []);
+        $answers = $request->session()->get('quiz.answers', []);
+        $questionsData = [];
+
+        foreach ($questions as $questionId) {
+            $question = Question::find($questionId);
+            if ($question) {
+                $userAnswer = $answers[$questionId] ?? null;
+                $isCorrect = $userAnswer === $question->correct_option;
+                $questionsData[] = [
+                    'question' => $question,
+                    'user_answer' => $userAnswer,
+                    'is_correct' => $isCorrect,
+                ];
+            }
+        }
+
+        $request->session()->forget(['current_question', 'score', 'quiz.questions', 'quiz.answers']);
+
+        return view('quiz_feedback_detail', [
+            'questionsData' => $questionsData,
+            'quiz' => $quiz,
+        ]);
     }
 }
