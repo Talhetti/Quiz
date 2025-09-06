@@ -1,7 +1,7 @@
 <x-layouts.app>
-    <div class="max-w-md mx-auto mt-20 p-10 rounded-3xl shadow-xl text-center relative bg-[#364153]">
-        
-        <h1 class="text-5xl font-extrabold text-blue-600 mb-6">🎉 Parabéns!</h1>
+    <div class="max-w-md mx-auto mt-20 rounded-3xl shadow-xl text-center relative" style="background-color: #1d283a; padding: 2rem; border-radius: 0.5rem;">
+
+        <h1 class="text-2xl font-bold text-blue-600 mb-6">🎉 Parabéns!</h1>
 
         <p class="text-lg mb-4 text-gray-700 dark:text-gray-300">
             Você acertou <span class="font-bold text-green-600">{{ $score }}</span> de <span class="font-bold">{{ $total }}</span> perguntas.
@@ -17,8 +17,9 @@
                 Ver detalhes das respostas
             </a>
 
-            <a href="{{ route('dashboard') }}" 
-                class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-full shadow-md transition transform hover:scale-105 w-full text-center">
+            <a href="{{ route('dashboard') }}"
+                style="background-color: #21588a;"
+                class=" text-white font-semibold px-8 py-3 rounded-full shadow-md transition transform hover:scale-105 w-full text-center">
                 Voltar ao início
             </a>
         </div>

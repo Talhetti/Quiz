@@ -28,10 +28,9 @@
                 </label>
             </div>
 
-            <!-- Botão enviar -->
             <button type="submit"
-                class="px-4 py-2 rounded-2 font-semibold text-white"
-                style="background-color: #17202A; border: 2px solid #0F1A26; transition: background-color 0.3s ease, transform 0.2s;">
+                class="px-4 py-2 rounded-lg font-semibold border text-white cursor-pointer botao-enviar"
+                style="background-color: #273750;">
                 Enviar
             </button>
         </form>
