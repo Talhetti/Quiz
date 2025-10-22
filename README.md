@@ -44,3 +44,36 @@ A aplicação vem com funcionalidades prontas para uso:
   - Acesso rápido às últimas atividades
 
 ---
+
+--- How to install dependencies locally ---
+
+1) PHP / Composer (recommended):
+
+Install Composer, then run in project root:
+
+```bash
+composer install
+```
+
+To install production-only dependencies:
+
+```bash
+composer install --no-dev
+```
+
+2) Node / npm (recommended):
+
+Install Node.js (18+ recommended) and npm or pnpm. Then in project root:
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+To build assets:
+
+```bash
+npm run build
+# or for dev
+npm run dev
